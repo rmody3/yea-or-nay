@@ -1,16 +1,15 @@
 const baseurl = "https://api.propublica.org/congress/v1/"
-
+const propublicaKey = "xmCA1Av1H07lpXRoKF6kjhjup7QgGNu8bTnUfmlc"
+const googleKey = "AIzaSyBEC89A8IPwzvsY9XGI1RFXJSyubOURnaY"
 const google = `https://www.googleapis.com/civicinfo/v2/representatives?roles=legislatorUpperBody&roles=legislatorLowerBody&levels=country&key=${googleKey}&address=`
 
 var allReps = {}
 var yourReps = []
-// function convertAddress(address){
-//   return address.replace(" ", "%20")
-// }
+
 
 $(function () {
-  getRepList("house")
-  getRepList("senate")
+  getRepList("house")//gets entire list of reps from current congress
+  getRepList("senate")//gets entire list of senators from current congress
   $("#address-search").on("submit", function(event) {
     yourReps = []
     event.preventDefault()
@@ -44,6 +43,8 @@ function getRepList(chamber) {
       response["results"][0]["members"].forEach(member => {
 
         let name = member.first_name + " " + member.last_name
+        let splitName = name.split(" ")
+         name = splitName[0] + " " + splitName[splitName.length -1]
         allReps[name] = member.id
         })
       })
