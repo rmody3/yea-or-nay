@@ -1,7 +1,7 @@
 const baseurl = "https://api.propublica.org/congress/v1/"
 
-
 const google = `https://www.googleapis.com/civicinfo/v2/representatives?roles=legislatorUpperBody&roles=legislatorLowerBody&levels=country&key=${googleKey}&address=`
+
 var allReps = {}
 var yourReps = []
 // function convertAddress(address){
@@ -18,7 +18,10 @@ $(function () {
     $.get(google + address, (result)=> {
       var reps = result["officials"]
       reps.forEach((rep)=>{
-        var aRep = new Representative(rep.name)
+        let splitName = rep.name.split(" ")
+        let name = splitName[0] + " " + splitName[splitName.length -1]
+
+        var aRep = new Representative(name)
         aRep.findMemberId()
         yourReps.push(aRep)
       })
@@ -39,11 +42,13 @@ function getRepList(chamber) {
     headers: {"X-API-Key": propublicaKey}})
     .done((response)=>{
       response["results"][0]["members"].forEach(member => {
+
         let name = member.first_name + " " + member.last_name
         allReps[name] = member.id
+        })
       })
-    })
-}
+    }
+
 
 function addRepLinks(){
   $(".rep-link").on('click', function () {
@@ -64,9 +69,8 @@ function addRepLinks(){
 }
 
 class Representative {
-  constructor(name, chamber) {
+  constructor(name) {
     this.name = name
-    this.chamber = chamber
   }
 
   findMemberId() {
