@@ -100,16 +100,28 @@ function voteDetail(){
         .done(response => {console.log(response)
           let billData = response["results"][0]
           voteInfo = `<h1>Bill: ${billData.bill} - ${billData.title}</h1> <h3>Sponsor: ${billData.sponsor}</h3><a href="${billData.govtrack_url}" target="_blank">Full details available here</a>` + billData.summary
-
           $("#detail-container").html(voteInfo)
-          // $("#detail-container").append($.parseHTML(billData.summary + "</p>"))
-
-          debugger
         })
-        // debugger;
     }
+    userVote()
   })
 }
+
+function userVote(){
+  var voteForm = `<form id="vote-form">
+  <h2>How would YOU vote?</h2>
+  <input type="radio" name="vote" value=true> YES<br>
+  <input type="radio" name="vote" value=false> NO<br>
+    <h4>Submit your vote to see how your elected official voted on this issue</h4>
+    <input type="submit">
+  </form>`
+  $("#user-vote").html(voteForm)
+  $("#vote-form").on("submit", function() {
+    debugger;
+  })
+
+}
+
 
 class Representative {
   constructor(name) {
