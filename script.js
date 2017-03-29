@@ -103,23 +103,33 @@ function voteDetail(){
           $("#detail-container").html(voteInfo)
         })
     }
-    userVote()
+    userVote(vote)
   })
 }
 
-function userVote(){
+function userVote(vote){
+  var userResponse = ""
   var voteForm = `<form id="vote-form">
   <h2>How would YOU vote?</h2>
-  <input type="radio" name="vote" value=true> YES<br>
-  <input type="radio" name="vote" value=false> NO<br>
+  <input type="radio" name="vote" value="Yes"> YES<br>
+  <input type="radio" name="vote" value="No"> NO<br>
     <h4>Submit your vote to see how your elected official voted on this issue</h4>
     <input type="submit">
   </form>`
   $("#user-vote").html(voteForm)
-  $("#vote-form").on("submit", function() {
-    debugger;
+  $("#vote-form").on("submit", function(event) {
+    event.preventDefault()
+    if(this.vote.value===vote.position){
+      var agree = "Looks like you agree, in this case, congrats!"
+    } else {
+      var agree = "Too bad, vote for a new Representative"
+    }
+    let result = `<h2>
+    You voted ${this.vote.value}, your Representative voted ${vote.position}.<br>
+    ${agree}</h2>`
+    $("#user-vote").html(result)
+    debugger
   })
-
 }
 
 
