@@ -128,7 +128,6 @@ function userVote(vote){
     You voted ${this.vote.value}, your Representative voted ${vote.position}.<br>
     ${agree}</h2>`
     $("#user-vote").html(result)
-    debugger
   })
 }
 
