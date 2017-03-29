@@ -5,6 +5,7 @@ const google = `https://www.googleapis.com/civicinfo/v2/representatives?roles=le
 
 var allReps = {}
 var yourReps = []
+var allRepVotes = {}
 
 
 $(function () {
@@ -12,6 +13,7 @@ $(function () {
   getRepList("senate")//gets entire list of senators from current congress
   $("#address-search").on("submit", function(event) {
     yourReps = []
+    $("#votes").empty()
     event.preventDefault()
     var address = $('#address').val()
     $.get(google + address, (result)=> {
@@ -50,23 +52,63 @@ function getRepList(chamber) {
       })
     }
 
+//["On Passage of the Bill", "On the Nomination", "On Motion to Suspend the Rules and Pass", "On the Amendment"]
 
 function addRepLinks(){
   $(".rep-link").on('click', function () {
+    allRepVotes = {}
     var memberId = $(this).data("id")
     $.ajax({
       url: baseurl + "members/"+memberId+"/votes.json",
       headers: {"X-API-Key": propublicaKey}})
       .done(response => {
         var votes = response["results"][0]["votes"]
-        var voteList = ""
+        var voteList = "<ul>"
         votes.forEach((vote)=>{
-          voteList += `<li>${vote.position}-${vote.description}</li>`
+          if(vote.question.match (/.*(Passage|Nomination|Suspend the Rules and Pass).*/)){
+          // voteList += `<li>${vote.position}-${vote.description}</li>`remove reps vote
+            voteList += `<li> <a href="#" class="vote-link" data-id="${vote.description}">${vote.description}</a></li>`//create link
+            allRepVotes[vote.description] = vote
+          }
+          voteList+="</ul>"
+
         })
-        console.log(voteList);
-        $("#votes").html(voteList)
+        //console.log(voteList);
+        $("#detail-container").html(voteList)
+
+        voteDetail()
       })
     })
+}
+
+function voteDetail(){
+  $("#detail-container").on("click", "a.vote-link", (event)=>{
+
+    event.preventDefault()
+    var voteId = $(event.currentTarget).data("id")
+    var vote = allRepVotes[voteId]
+
+    var voteInfo = ""
+    if(vote.nomination){
+      voteInfo = `<h1>Nominee: ${vote.nomination.name}</h1> <h2>To: ${vote.nomination.agency}</h2> <p>${vote.description}</p>`
+      $("#detail-container").html(voteInfo)
+
+    }else{
+      $.ajax({
+        url: vote.bill.bill_uri,
+        headers: {"X-API-Key": propublicaKey}})
+        .done(response => {console.log(response)
+          let billData = response["results"][0]
+          voteInfo = `<h1>Bill: ${billData.bill} - ${billData.title}</h1> <h3>Sponsor: ${billData.sponsor}</h3><a href="${billData.govtrack_url}" target="_blank">Full details available here</a>` + billData.summary
+
+          $("#detail-container").html(voteInfo)
+          // $("#detail-container").append($.parseHTML(billData.summary + "</p>"))
+
+          debugger
+        })
+        // debugger;
+    }
+  })
 }
 
 class Representative {
