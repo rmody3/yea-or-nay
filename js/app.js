@@ -1,8 +1,8 @@
 const baseurl = "https://api.propublica.org/congress/v1/"
 const propublicaKey = "xmCA1Av1H07lpXRoKF6kjhjup7QgGNu8bTnUfmlc"
-const googleKey = "AIzaSyBEC89A8IPwzvsY9XGI1RFXJSyubOURnaY"
-const google = `https://www.googleapis.com/civicinfo/v2/representatives?roles=legislatorUpperBody&roles=legislatorLowerBody&levels=country&key=${googleKey}&address=`
-
+// const googleKey = "AIzaSyBEC89A8IPwzvsY9XGI1RFXJSyubOURnaY"
+// const google = `https://www.googleapis.com/civicinfo/v2/representatives?roles=legislatorUpperBody&roles=legislatorLowerBody&levels=country&key=${googleKey}&address=`
+//
 var allReps = {}
 var yourReps = []
 var allRepVotes = {}
@@ -16,6 +16,8 @@ $(function () {
     $("#votes").empty()
     event.preventDefault()
     var address = $('#address').val()
+    Official.byAddress(address)
+    debugger
     $.get(google + address, (result)=> {
       var reps = result["officials"]
       reps.forEach((rep)=>{

@@ -1,5 +1,4 @@
 class Official {
-  var allOfficials = {}
   constructor(name, chamber){
     this.name = name
     this.chamber = chamber
@@ -11,5 +10,14 @@ class Official {
 
   static getAllOfficials(){
     //gets all officials from API and saves them as instances
+  }
+
+  static byAddress(address) {
+    return AddressApi.get(address)
+    //gets all officials that for searched address
+  }
+
+  static findByName(name){
+    //sets and returns memberID
   }
 }
