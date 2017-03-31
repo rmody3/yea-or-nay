@@ -2,6 +2,7 @@ class BillDetailController{
 
   constructor($target){
     this.$target = $target
+    this.attachListeners()
   }
 
   render(billDetailsResult){
@@ -12,4 +13,13 @@ class BillDetailController{
     }
   }
 
+
+  attachListeners(){
+    $("#user-vote").on("submit", "form#vote-form", function(event){
+      event.preventDefault()
+      let id =$(event.currentTarget).data("id")
+      var thisBill = store.state.bill[id]
+      BillDetailsView.renderVoteResult(thisBill,this.vote.value)
+    })
+  }
 }

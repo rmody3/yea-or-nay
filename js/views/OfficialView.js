@@ -3,6 +3,8 @@ class OfficialView{
   static renderOfficials($target, officials){
     let header = "<tr><th>Your Representatives</th></tr>"
     let officialTable = officials.map(this.eachOfficialTemplate)
+    $("#detail-container").empty()
+    $("#user-vote").empty()
     $target.html(header + officialTable)
   }
 

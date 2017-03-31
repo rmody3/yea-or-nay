@@ -1,13 +1,9 @@
-
-
-
-
-
 class BillsView{
   static renderBills($target, billsResult){
     var billList =   Object.keys(billsResult).map(billKey=>{
       return  this.eachBillTemplate(billsResult[billKey])
     })
+    $("#user-vote").empty()
     $target.html(billList)
   }
 

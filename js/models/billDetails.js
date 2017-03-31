@@ -12,8 +12,12 @@ class BillDetail{
     }else{
       return billDetailApi.get(billObject)
        .then(response => {
-         return response["results"][0]
+         return new Promise (function(resolve){
+           resolve({"realBill":response["results"][0],
+           "description": billObject.description
+          })
         })
+      })
     }
   }
 }
