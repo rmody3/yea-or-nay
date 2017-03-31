@@ -6,23 +6,36 @@
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="js/store.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/wrappers/addressApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/billApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/officialApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/bills.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/models/officials.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/controllers/BillController.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/controllers/OfficialController.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/views/BillsView.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/views/OfficialView.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
     <h1>Welcome to Legislator Tracker</h1>
-    <form id="address-search">
-      Enter your address: <input type="text" name="address" value="3432 Spindletop Way, Kennesaw, GA 30144" id="address">
-      <input type="submit" value="Submit">
-    </form>
+    <div class="row">
 
-    <br>
-    <table id="reps" border="1">
-    </table>
-    <div id="detail-container">
+      <div class="col-xs-4">
+        <form id="address-search">
+          Enter your address: <input type="text" name="address" value="3432 Spindletop Way, Kennesaw, GA 30144" id="address">
+          <input type="submit" value="Submit">
+        </form>
 
-   </div>
+        <br>
+        <table id="officials-table" border="1">
+        </table>
+      </div>
+      <div class="col-xs-8" id="detail-container">
+
+      </div>
+    </div>
 
    <div id="user-vote">
    </div>

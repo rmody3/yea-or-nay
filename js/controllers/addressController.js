@@ -1,3 +1,0 @@
-class addressController{
-  constructor()
-}
