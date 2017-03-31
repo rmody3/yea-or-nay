@@ -5,15 +5,14 @@
 
 class BillsView{
   static renderBills($target, billsResult){
-    var billList = "<ul>"
-    billList +=   Object.keys(billsResult).map(billKey=>{
+    var billList =   Object.keys(billsResult).map(billKey=>{
       return  this.eachBillTemplate(billsResult[billKey])
     })
-    billList+="</ul>"
     $target.html(billList)
   }
 
   static eachBillTemplate(bill){
-    return`<li> <a href="#" class="bill-link" data-id="${bill.description}">${bill.description}</a></li>`
+    console.log(bill)
+    return`<a href="#" class="bill-link" data-id="${bill.description}"><strong>${bill.date}</strong> - ${bill.description}</a><br>`
   }
 }

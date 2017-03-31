@@ -1,7 +1,8 @@
 class BillController{
 
-  constructor($target){
+  constructor($target, billDetailController){
     this.$target = $target
+    this.billDetailController = billDetailController
     this.attachListeners()
   }
 
@@ -9,11 +10,14 @@ class BillController{
     BillsView.renderBills(this.$target, billsResult)
   }
 
-  attachListeners(){
-    this.$target.on("click", "a.vote-link", (event)=>{
+  attachListeners(billDetailController){
+    this.$target.on("click", "a.bill-link", (event)=>{
       event.preventDefault()
-
-    console.log(this)
+      let id =$(event.currentTarget).data("id")
+      BillDetail.find(id)
+      .then(billDetailsResult=>{
+        this.billDetailController.render(billDetailsResult)
+      })
     })
   }
 

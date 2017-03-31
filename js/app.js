@@ -14,7 +14,8 @@ $(function () {
     Official.byAddress(address).then(officials=>{
       let $target = $("#officials-table")
       let $detailTarget = $("#detail-container")
-      let billController = new BillController($detailTarget)
+      var billDetailController = new BillDetailController($detailTarget)
+      var billController = new BillController($detailTarget, billDetailController)
       var officialController = new OfficialController($target, officials, billController)
     })
 
@@ -89,31 +90,31 @@ $(function () {
     // })
 // }
 
-function voteDetail(){
-  $("#detail-container").on("click", "a.vote-link", (event)=>{
-
-    event.preventDefault()
-    var voteId = $(event.currentTarget).data("id")
-    var vote = allRepVotes[voteId]
-
-    var voteInfo = ""
-    if(vote.nomination){
-      voteInfo = `<h1>Nominee: ${vote.nomination.name}</h1> <h2>To: ${vote.nomination.agency}</h2> <p>${vote.description}</p>`
-      $("#detail-container").html(voteInfo)
-
-    }else{
-      $.ajax({
-        url: vote.bill.bill_uri,
-        headers: {"X-API-Key": propublicaKey}})
-        .done(response => {console.log(response)
-          let billData = response["results"][0]
-          voteInfo = `<h1>Bill: ${billData.bill} - ${billData.title}</h1> <h3>Sponsor: ${billData.sponsor}</h3><a href="${billData.govtrack_url}" target="_blank">Full details available here</a>` + billData.summary
-          $("#detail-container").html(voteInfo)
-        })
-    }
-    userVote(vote)
-  })
-}
+// function voteDetail(){
+//   $("#detail-container").on("click", "a.vote-link", (event)=>{
+//
+//     event.preventDefault()
+//     var voteId = $(event.currentTarget).data("id")
+//     var vote = allRepVotes[voteId]
+//
+//     var voteInfo = ""
+//     // if(vote.nomination){
+//     //   voteInfo = `<h1>Nominee: ${vote.nomination.name}</h1> <h2>To: ${vote.nomination.agency}</h2> <p>${vote.description}</p>`
+//     //   $("#detail-container").html(voteInfo)
+//     //
+//     // }else{
+//       // $.ajax({
+//       //   url: vote.bill.bill_uri,
+//       //   headers: {"X-API-Key": propublicaKey}})
+//       //   .done(response => {console.log(response)
+//       //     let billData = response["results"][0]
+//       //     voteInfo = `<h1>Bill: ${billData.bill} - ${billData.title}</h1> <h3>Sponsor: ${billData.sponsor}</h3><a href="${billData.govtrack_url}" target="_blank">Full details available here</a>` + billData.summary
+//       //     $("#detail-container").html(voteInfo)
+//       //   })
+//   //s  }
+//     userVote(vote)
+//   })
+// }
 
 function userVote(vote){
   var userResponse = ""
