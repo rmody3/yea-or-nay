@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+  
     <meta charset="utf-8">
     <title>Track your Legislator</title>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="style.css">
     <script src="js/store.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/wrappers/addressApi.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/wrappers/billDetailApi.js" type="text/javascript" charset="utf-8"></script>
@@ -28,7 +30,7 @@
 
       <div class="col-xs-4">
         <form id="address-search">
-          Enter your address: <input type="text" name="address" value="3432 Spindletop Way, Kennesaw, GA 30144" id="address">
+          Enter your address or ZIP code: <input type="text" name="address"  id="address"><br>
           <input type="submit" value="Submit">
         </form>
 
