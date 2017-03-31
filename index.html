@@ -3,25 +3,46 @@
   <head>
     <meta charset="utf-8">
     <title>Track your Legislator</title>
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="script.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="js/store.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/addressApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/billDetailApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/billApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/wrappers/officialApi.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/billDetails.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/bills.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/models/officials.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/controllers/BillDetailController.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/controllers/BillController.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/controllers/OfficialController.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/views/BillDetailsView.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/views/BillsView.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/views/OfficialView.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Welcome to Legislator Tracker</h1>
-    <form id="address-search">
-      Enter your address: <input type="text" name="address" value="3432 Spindletop Way, Kennesaw, GA 30144" id="address">
-      <input type="submit" value="Submit">
-    </form>
+    <h1>Do You Agree with Your Legislators?</h1>
+    <div class="row">
 
-    <br>
-    <table id="reps" border="1">
-    </table>
-    <div id="detail-container">
+      <div class="col-xs-4">
+        <form id="address-search">
+          Enter your address: <input type="text" name="address" value="3432 Spindletop Way, Kennesaw, GA 30144" id="address">
+          <input type="submit" value="Submit">
+        </form>
 
-   </div>
-
-   <div id="user-vote">
-   </div>
+        <br>
+        <table id="officials-table" border="1">
+        </table>
+      </div>
+      <div class="col-xs-8">
+        <div id="detail-container">
+        </div>
+        <div id="user-vote">
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
