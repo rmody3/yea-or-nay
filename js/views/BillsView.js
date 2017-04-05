@@ -9,6 +9,6 @@ class BillsView{
 
   static eachBillTemplate(bill){
     console.log(bill)
-    return`<a href="#" class="bill-link" data-id="${bill.description}"><strong>${bill.date}</strong> - ${bill.description}</a><br>`
+    return`<a href="#" class="bill-link list-group-item" data-id="${bill.description}"><strong>${bill.date}</strong> - ${bill.description}</a>`
   }
 }

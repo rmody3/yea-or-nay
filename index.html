@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  
+
     <meta charset="utf-8">
     <title>Track your Legislator</title>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -25,26 +25,33 @@
     <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Do You Agree with Your Legislators?</h1>
-    <div class="row">
+    <div class="bg">
+    </div>
+    <div class="container-fluid">
 
-      <div class="col-xs-4">
-        <form id="address-search">
-          Enter your address or ZIP code: <input type="text" name="address"  id="address"><br>
-          <input type="submit" value="Submit">
-        </form>
-
-        <br>
-        <table id="officials-table" border="1">
-        </table>
+      <div class="page-header">
+        <h1>Yea or Nay <small>Do you agree with your Legislators?</small></h1>
       </div>
-      <div class="col-xs-8">
-        <div id="detail-container">
+      <div class="row">
+        <div class="col-xs-4">
+          <form class="form-inline" id="address-search">
+            <div class="form-group">
+              <label for="address">Enter your address or ZIP code: </label><input type="text" class="form-control" name="address"  id="address">
+              <input type="submit" class="form-control" value="Submit">
+            </div>
+          </form>
+          <table class="table table-hover table-bordered" id="officials-table">
+          </table>
         </div>
-        <div id="user-vote">
+        <div class="col-xs-8">
+          <div id="detail-container" class ="list-group">
+          </div>
+          <div id="user-vote">
+          </div>
         </div>
       </div>
     </div>
+
 
   </body>
 </html>

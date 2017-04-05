@@ -17,8 +17,8 @@ class BillDetailsView{
   static userVote(id){
     var voteForm = `<form data-id="${id}" id="vote-form">
     <h2>How would YOU vote?</h2>
-    <input type="radio" name="vote" value="Yes"> YES<br>
-    <input type="radio" name="vote" value="No"> NO<br>
+    <input type="radio" name="vote" value="Yes"> Yea<br>
+    <input type="radio" name="vote" value="No"> Nay<br>
       <h4>Submit your vote to see how your elected official voted on this issue</h4>
       <input type="submit">
     </form>`
@@ -27,9 +27,9 @@ class BillDetailsView{
 
   static renderVoteResult(thisBill,userVote){
     if(userVote===thisBill.position){
-      var agree = "Looks like you agree, in this case, congrats!"
+      var agree = "Looks like you agree, in this case. Congrats!"
     } else {
-      var agree = "Too bad, vote for a new Representative"
+      var agree = "Too bad, vote for a new Representative."
     }
     let result = `<h2>
     You voted ${userVote}, your Representative voted ${thisBill.position}.<br>
